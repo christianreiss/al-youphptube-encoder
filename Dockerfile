@@ -9,7 +9,7 @@ LABEL net.alpha-labs.release-date="2017-11-19"
 LABEL net.alpha-labs.version.is-production="true"
 
 # Install required packages & System Update
-RUN apt update && apt upgrade -y && DEBIAN_FRONTEND=noninteractive apt install -y apache2 monit php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-curl php7.0-gd php7.0-intl mysql-server mysql-client ffmpeg git libimage-exiftool-perl python curl
+RUN apt update && apt upgrade -y && DEBIAN_FRONTEND=noninteractive apt install -y apache2 monit php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-curl php7.0-gd php7.0-intl mysql-client ffmpeg git libimage-exiftool-perl python curl
 
 # Clone the Repo & Download youtube-dl
 RUN cd /var/www/ && rm -rf html && git clone https://github.com/DanielnetoDotCom/YouPHPTube-Encoder.git && mv YouPHPTube-Encoder html
