@@ -1,25 +1,12 @@
 set daemon  30
 set logfile /var/log/monit.log
 
-set httpd port 8082 and
-  allow chris:fordka   
+#set httpd port 8082 and
+#  allow x:y
 
 check process apache with pidfile /var/run/apache2/apache2.pid
   start program = "/usr/sbin/apachectl start" 
   stop program  = "/usr/bin/killall -9 apache2"
   if does not exist then restart
   if 6 restarts within 60 cycles then timeout
-
-#check process crond with pidfile /var/run/crond.pid
-#  start program = "/usr/sbin/crond"
-#  stop program  = "/usr/bin/killall -9 crond"
-#  if does not exist then restart
-#  if 6 restarts within 60 cycles then timeout
-#
-#check process otrs
-#  matching "/usr/bin/perl -X /opt/otrs/bin/otrs.Daemon.pl start"
-#  start program = "/bin/sudo -u otrs /opt/otrs/bin/otrs.Daemon.pl start"
-#  stop program  = "/bin/sudo -u otrs /opt/otrs/bin/otrs.Daemon.pl stop"
-#  if does not exist then restart
-#  if 6 restarts within 60 cycles then timeout
 
