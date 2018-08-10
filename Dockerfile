@@ -1,9 +1,10 @@
 # Parent Image
-FROM  ubuntu:latest
+# FROM phusion/baseimage
+FROM ubuntu:16.04
 
 # Set some Meta-Info
 LABEL maintainer="Christian Reiss (email@christian-reiss.de)"
-LABEL net.alpha-labs.version="0.1"
+LABEL net.alpha-labs.version="0.2"
 LABEL vendor="alpha-labs.net"
 LABEL net.alpha-labs.release-date="2017-11-19"
 LABEL net.alpha-labs.version.is-production="true"
@@ -28,6 +29,9 @@ EXPOSE 80/tcp
 RUN a2enmod rewrite
 COPY apache.conf /etc/apache2/conf-enabled/youphptube.conf
 COPY php.ini /etc/php/7.0/apache2/conf.d/youphptube.ini
+
+# Debug
+RUN touch /var/log/php.log && chmod 0666 /var/log/php.log
 
 # Run it.
 ENTRYPOINT /usr/bin/monit -c /etc/monitrc -I
